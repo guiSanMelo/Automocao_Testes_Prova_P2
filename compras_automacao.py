@@ -1,4 +1,4 @@
-from utils import *
+from utils import Utils
 import os
 from dotenv import load_dotenv
 from selenium import webdriver
@@ -12,12 +12,13 @@ from selenium.webdriver.support import expected_conditions as EC
 
 class Cliente:
 
-    def __init__(self, username, password, nome, sobrenome, cep):
+    def __init__(self, username, password, nome, sobrenome, cep, orcamento:float=75):
         self.username=username
         self.password=password
         self.nome=nome
         self.sobrenome=sobrenome
         self.cep=cep
+        self.orcamento = orcamento
         pass
 
 
@@ -32,6 +33,7 @@ class Operacao():
         try:
             driver.get("https://www.saucedemo.com/")
             self.util.correct_message("Abrir o site")
+            driver.implicitly_wait(20)
             pass
         except Exception as e:
             self.util.error_message("Abrir o site", e)
@@ -47,15 +49,35 @@ class Operacao():
 
             driver.find_element(By.ID, 'password').send_keys(cliente.password)
 
-            driver.find_element(By.ID, 'login-button').click()
-
+            driver.implicitly_wait(20)
             self.util.correct_message("Fazer login")
-
         except Exception as e:
             self.util.error_message("Fazer login", e)
         pass
 
+    def apertar_botao(self, driver:webdriver.Chrome, botao_id:str|None=None, botao_class:str|None=None):
+        try:
+            if botao_id is not None:
+                botao=driver.find_element(By.ID, f'{botao_id}')
+                nome_botao=botao_id
+                pass
+            elif botao_class is not None:
+                botao=driver.find_element(By.CLASS_NAME, f'{botao_class}')
+                nome_botao=botao_class
+                pass
+            botao.click()
+            driver.implicitly_wait(20)
+            self.util.correct_message(f"Apertar {nome_botao}")
+        except Exception as e:
+            if botao_id is not None:
+                nome_botao=botao_id
+            elif botao_class is not None:
+                nome_botao=botao_class
+            self.util.error_message(f"Botão-{nome_botao}", e)
+            pass
+
     def selecionar_produtos():
+        
         pass
 
     def ir_carrinho():
