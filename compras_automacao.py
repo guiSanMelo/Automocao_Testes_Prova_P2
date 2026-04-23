@@ -1,3 +1,4 @@
+from utils import *
 import os
 from dotenv import load_dotenv
 from selenium import webdriver
@@ -8,7 +9,6 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-load_dotenv()
 
 class Cliente:
 
@@ -21,23 +21,38 @@ class Cliente:
         pass
 
 
-class Operacao(Cliente):
+class Operacao():
+    util = Utils()
+    #user-name = 0
+    #password = 0
+    def __init__(self):
+        pass
 
-    user-name = 0
-    password = 0
-
-    def abrir_site(driver:webdriver.Chrome):
+    def abrir_site(self, driver:webdriver.Chrome):
         try:
             driver.get("https://www.saucedemo.com/")
-            print("site aberto")
+            self.util.correct_message("Abrir o site")
             pass
-        except:
-            print("não foi possível abrir o site!")
+        except Exception as e:
+            self.util.error_message("Abrir o site", e)
             pass
         pass
 
-    def login(cliente:Cliente):
+    def login(self, cliente:Cliente, driver:webdriver.Chrome):
+        try:
+            wait =  WebDriverWait(driver, 10)
 
+            campo_username = wait.until(EC.presence_of_element_located((By.ID, 'user-name')))
+            campo_username.send_keys(cliente.username)
+
+            driver.find_element(By.ID, 'password').send_keys(cliente.password)
+
+            driver.find_element(By.ID, 'login-button').click()
+
+            self.util.correct_message("Fazer login")
+
+        except Exception as e:
+            self.util.error_message("Fazer login", e)
         pass
 
     def selecionar_produtos():
@@ -61,6 +76,4 @@ class Operacao(Cliente):
     def posso_gastar(preco_produto):
         pass
 
-
-    abrir_site()
 
