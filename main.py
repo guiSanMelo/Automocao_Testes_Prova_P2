@@ -1,11 +1,8 @@
-from compras_automacao import Cliente, Operacao
-from utils import Utils
 import os
-from dotenv import load_dotenv
 from utils import Utils
-import os
 from dotenv import load_dotenv
 from selenium import webdriver
+from Operacao import Cliente, Tela_Login
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.by import By
@@ -19,32 +16,27 @@ class Main:
     def __init__(self):
         pass
 
-    util = Utils()
-
     def programa(self):
+        load_dotenv()
+        _util = Utils()
+        _login = Tela_Login()
+        _cliente = Cliente(
+            username=os.getenv("SAUCE_USERNAME"),
+            password=os.getenv("SAUCE_PASSWORD"),
+            nome=os.getenv("NOME"),
+            sobrenome=os.getenv("SOBRENOME"),
+            cep=os.getenv("CEP")
+        )
+        service=Service(ChromeDriverManager().install())
+        driver=webdriver.Chrome(service=service)
+
         try:
-            load_dotenv()
-            _operacao = Operacao()
+            _login.abrir_site(driver)
+            _login.credenciais_login(_cliente, driver)
 
-            _cliente = Cliente(
-                username=os.getenv("SAUCE_USERNAME"),
-                password=os.getenv("SAUCE_PASSWORD"),
-                nome=os.getenv("NOME"),
-                sobrenome=os.getenv("SOBRENOME"),
-                cep=os.getenv("CEP")
-            )
-
-            service=Service(ChromeDriverManager().install())
-            driver=webdriver.Chrome(service=service)
-
-            _operacao.abrir_site(driver)
-            _operacao.login(_cliente, driver)
-
-            _operacao.apertar_botao(driver, botao_id="login-button")
-
-            
+            _util.apertar_botao(driver, botao_id="login-button")
         except Exception as e:
-            self.util.error_message("Main-programa", e)
+            _util.error_message("Main-programa", e)
         finally:
             print("programa fechado")
             driver.quit()
