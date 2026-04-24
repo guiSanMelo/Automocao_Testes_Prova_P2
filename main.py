@@ -1,26 +1,26 @@
 import os
-from utils import Utils
+from utils.messages import Messages
+from utils.actions import Actions
+from Operacao.tela_login import Tela_Login
+from models.cliente import Cliente
 from dotenv import load_dotenv
 from selenium import webdriver
-from Operacao import Cliente, Tela_Login
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
-from selenium.webdriver.common.by import By
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 
 
 class Main:
 
     def __init__(self):
+        self._messages = Messages()
+        self._actions = Actions()
+        self._login = Tela_Login()
         pass
 
     def programa(self):
         load_dotenv()
-        _util = Utils()
-        _login = Tela_Login()
-        _cliente = Cliente(
+        
+        cliente = Cliente(
             username=os.getenv("SAUCE_USERNAME"),
             password=os.getenv("SAUCE_PASSWORD"),
             nome=os.getenv("NOME"),
@@ -31,12 +31,11 @@ class Main:
         driver=webdriver.Chrome(service=service)
 
         try:
-            _login.abrir_site(driver)
-            _login.credenciais_login(_cliente, driver)
+            self._login.abrir_site(driver)
+            self._login.credenciais_login(cliente, driver)
 
-            _util.apertar_botao(driver, botao_id="login-button")
         except Exception as e:
-            _util.error_message("Main-programa", e)
+            self._messages.error_message("Main-programa", e)
         finally:
             print("programa fechado")
             driver.quit()
