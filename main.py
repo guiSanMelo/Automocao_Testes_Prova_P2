@@ -19,7 +19,7 @@ class Main:
 
     def programa(self):
         load_dotenv()
-        
+        print("teste1")
         cliente = Cliente(
             username=os.getenv("SAUCE_USERNAME"),
             password=os.getenv("SAUCE_PASSWORD"),
