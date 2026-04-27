@@ -1,9 +1,9 @@
 import os
 from utils.messages import Messages
 from utils.actions import Actions
-from Operacao.tela_login import Tela_Login
-from Operacao.selecao_produtos import Selecao_Produtos
-from Operacao.checkout import Checkout
+from services.tela_login import Tela_Login
+from services.selecao_produtos import Selecao_Produtos
+from services.checkout import Checkout
 from models.cliente import Cliente
 from dotenv import load_dotenv
 from selenium import webdriver
