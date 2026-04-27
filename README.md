@@ -26,8 +26,6 @@ pip install -r requirements.txt
 Por fim, você precisa criar um arquivo ".env", colocando as variáveis como no arquivo ".env_exemple". Em seguida você deve preenchê-las com as informações necessárias.
 >  Os valores em "SAUCE_USERNAME" e "SAUCE_PASSWORD" são valores padrões para acessar o site do experimento, portanto não é para serem trocados.
 
-
-
 # Automação de testes API
 
 
