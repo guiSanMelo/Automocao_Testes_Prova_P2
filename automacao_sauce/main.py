@@ -27,7 +27,7 @@ class Main:
             nome=os.getenv("SAUCE_NOME"),
             sobrenome=os.getenv("SAUCE_SOBRENOME"),
             cep=os.getenv("SAUCE_CEP"),
-            orcamento=os.getenv("SAUCE_ORCAMENTO")
+            orcamento=float(os.getenv("SAUCE_ORCAMENTO"))
         )
 
         driver = self._actions.criar_driver()

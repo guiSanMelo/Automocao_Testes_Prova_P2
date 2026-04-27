@@ -47,4 +47,4 @@ SAUCE_ORCAMENTO=
 ````
 
 ## Demonstração Atutomação Sauce:
-[![Watch the video](imgs\selenium-logo-png_seeklogo-394619.png)](https://youtu.be/ol5yTjFMmrg)   
+[![Demosntração!](imgs\selenium-logo-png_seeklogo-394619.png)](https://youtu.be/ol5yTjFMmrg)   
