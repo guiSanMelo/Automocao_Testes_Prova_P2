@@ -24,10 +24,10 @@ class Main:
         cliente = Cliente(
             username=os.getenv("SAUCE_USERNAME"),
             password=os.getenv("SAUCE_PASSWORD"),
-            nome=os.getenv("NOME"),
-            sobrenome=os.getenv("SOBRENOME"),
-            cep=os.getenv("CEP"),
-            orcamento=45
+            nome=os.getenv("SAUCE_NOME"),
+            sobrenome=os.getenv("SAUCE_SOBRENOME"),
+            cep=os.getenv("SAUCE_CEP"),
+            orcamento=os.getenv("SAUCE_ORCAMENTO")
         )
 
         driver = self._actions.criar_driver()

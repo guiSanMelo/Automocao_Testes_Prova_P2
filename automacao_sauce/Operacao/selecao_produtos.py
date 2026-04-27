@@ -33,11 +33,11 @@ class Selecao_Produtos:
                 nome = produto.text
                 button.click()
                 print(F"--Poduto adicionado ao carrinho: ", nome)
-                #sleep(2)
+                driver.implicitly_wait(2)
                 pass
 
             self.messages.correct_message("Produtos selecionados")
-            #driver.implicitly_wait(20)
+            driver.implicitly_wait(10)
             
             pass
         except Exception as e:
