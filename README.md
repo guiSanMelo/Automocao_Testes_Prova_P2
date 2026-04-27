@@ -12,7 +12,7 @@ Em seguida, vocÊ precisará iniciar o ambiente virtual. Para isso, esteja dentr
 > Windows:
 
 ````
-venv\Scripts\activate.bat   
+venv\Scripts\activate 
 ````
 
 >Linux:
