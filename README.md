@@ -45,3 +45,6 @@ SAUCE_SOBRENOME=
 SAUCE_CEP=
 SAUCE_ORCAMENTO=
 ````
+
+## Vídeo do teste rodando:
+[![Watch the video](imgs\selenium-logo-png_seeklogo-394619.png)](https://youtu.be/ol5yTjFMmrg)   
