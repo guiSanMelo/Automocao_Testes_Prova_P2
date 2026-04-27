@@ -34,6 +34,7 @@ class Main:
             self._login.abrir_site(driver)
             self._login.credenciais_login(cliente, driver)
             self._inventario.selecionar_produtos(driver, cliente)
+            self._inventario.ir_carrinho(driver)
         except Exception as e:
             self._messages.error_message("Main-programa", e)
         finally:

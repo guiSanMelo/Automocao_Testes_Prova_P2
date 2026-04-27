@@ -29,21 +29,34 @@ class Selecao_Produtos:
         #btn btn_primary btn_small btn_inventory -> Class
         #https://www.saucedemo.com/inventory.html
         try:
-            wait = WebDriverWait(driver, 20)
+            wait = WebDriverWait(driver, 5)
             button = wait.until(EC.presence_of_all_elements_located((By.CLASS_NAME, "btn_inventory")))
-            for button in button:
+            produto = wait.until(EC.presence_of_all_elements_located((By.CLASS_NAME, "inventory_item_name")))
+
+            for button, produto in zip(button, produto):
+                if self.posso_gastar(preco_total=0, orcamento_cliente=cliente.orcamento) is False:
+                    print("Você não tem mais dinheiro")
+                    break 
+                nome = produto.text
                 button.click()
-                produto = driver.find_element(By.CLASS_NAME, "inventory_item_name").text
-                print(F"--Poduto adicionado ao carrinho: ", produto)
-            
+                print(F"--Poduto adicionado ao carrinho: ", nome)
+                pass
+
             self.messages.correct_message("Produtos selecionados")
-            driver.implicitly_wait(30)
+            driver.implicitly_wait(20)
             pass
         except Exception as e:
             self.messages.error_message("Seleção de Produtos", e)
         pass
 
-    def ir_carrinho(self):
+    def ir_carrinho(self, driver:webdriver.Chrome):
+        try:
+            self.actions.apertar_botao(driver=driver, botao_class="shopping_cart_link")
+            driver.implicitly_wait(10)
+            self.messages.correct_message("ir para o carrinho")
+            pass
+        except Exception as e:
+            self.messages.error_message("ir pro carrinho", e)
         pass
 
     def posso_gastar(self, preco_total:int, orcamento_cliente:int):

@@ -28,32 +28,11 @@ class Actions:
             options.add_experimental_option("prefs", prefs)
             
             driver = webdriver.Chrome(options=options, service=service)
+            driver.maximize_window()
             self.messages.correct_message("Configurar Chrome")
             return driver
         except Exception as e:
             self.messages.error_message("Configurar chrome", e)
-
-    def achar_elemento(self, driver:webdriver.Chrome, elemento_id:str|None = None, elemento_class:str|None=None):
-        try:
-            if elemento_id is not None:
-                elemento = driver.find_element(By.ID, f'{elemento_id}')
-                elemento_nome = elemento_id
-                pass
-            elif elemento_class is not None:
-                elemento = driver.find_element(By.CLASS_NAME, f'{elemento_class}')
-                elemento_nome = elemento_class
-                pass
-            else:
-                raise ValueError("É necessário fornecer botao_id ou botao_class")
-            self.messages.correct_message(f'Achar {elemento_nome}')
-            return elemento
-        except Exception as e:
-            if elemento_id is not None:
-                nome_elemento = elemento_id
-            elif elemento_class is not None:
-                nome_elemento= elemento_class
-            self.messages.error_message(f"{nome_elemento}", e)
-        pass
 
     def apertar_botao(self, driver:webdriver.Chrome, botao_id:str|None=None, botao_class:str|None=None):
         try:
@@ -78,3 +57,27 @@ class Actions:
             self.messages.error_message(f"Botão-{nome_botao}", e)
             pass
     pass
+
+    def achar_elemento(self, driver:webdriver.Chrome, elemento_id:str|None = None, elemento_class:str|None=None):
+        try:
+            if elemento_id is not None:
+                elemento = driver.find_element(By.ID, f'{elemento_id}')
+                elemento_nome = elemento_id
+                pass
+            elif elemento_class is not None:
+                elemento = driver.find_element(By.CLASS_NAME, f'{elemento_class}')
+                elemento_nome = elemento_class
+                pass
+            else:
+                raise ValueError("É necessário fornecer botao_id ou botao_class")
+            self.messages.correct_message(f'Achar {elemento_nome}')
+            return elemento
+        except Exception as e:
+            if elemento_id is not None:
+                nome_elemento = elemento_id
+            elif elemento_class is not None:
+                nome_elemento= elemento_class
+            self.messages.error_message(f"{nome_elemento}", e)
+        pass
+
+   

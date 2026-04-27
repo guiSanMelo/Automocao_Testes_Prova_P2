@@ -16,7 +16,7 @@ class Tela_Login():
         try:
             driver.get("https://www.saucedemo.com/")
             self.messages.correct_message("Abrir o site")
-            driver.implicitly_wait(20)
+            driver.implicitly_wait(5)
             pass
         except Exception as e:
             self.messages.error_message("Abrir o site", e)
@@ -25,14 +25,14 @@ class Tela_Login():
 
     def credenciais_login(self, cliente:Cliente, driver:webdriver.Chrome):
         try:
-            wait = WebDriverWait(driver, 10)
+            wait = WebDriverWait(driver, 5)
 
             campo_username = wait.until(EC.presence_of_element_located((By.ID, 'user-name')))
             campo_username.send_keys(cliente.username)
 
             driver.find_element(By.ID, 'password').send_keys(cliente.password)
 
-            driver.implicitly_wait(20)
+            driver.implicitly_wait(5)
             self.actions.apertar_botao(driver, botao_id="login-button")
             driver.forward()
             self.messages.correct_message("Fazer login")
