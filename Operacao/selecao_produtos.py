@@ -6,7 +6,7 @@ from selenium.webdriver.common.by import By
 from models.cliente import Cliente
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-
+from time import sleep
 class Selecao_Produtos:
     
     def __init__(self):
@@ -29,21 +29,21 @@ class Selecao_Produtos:
         #btn btn_primary btn_small btn_inventory -> Class
         #https://www.saucedemo.com/inventory.html
         try:
+            
             wait = WebDriverWait(driver, 5)
             button = wait.until(EC.presence_of_all_elements_located((By.CLASS_NAME, "btn_inventory")))
             produto = wait.until(EC.presence_of_all_elements_located((By.CLASS_NAME, "inventory_item_name")))
 
             for button, produto in zip(button, produto):
-                if self.posso_gastar(preco_total=0, orcamento_cliente=cliente.orcamento) is False:
-                    print("Você não tem mais dinheiro")
-                    break 
                 nome = produto.text
                 button.click()
                 print(F"--Poduto adicionado ao carrinho: ", nome)
+                #sleep(2)
                 pass
 
             self.messages.correct_message("Produtos selecionados")
-            driver.implicitly_wait(20)
+            #driver.implicitly_wait(20)
+            
             pass
         except Exception as e:
             self.messages.error_message("Seleção de Produtos", e)
@@ -59,9 +59,67 @@ class Selecao_Produtos:
             self.messages.error_message("ir pro carrinho", e)
         pass
 
-    def posso_gastar(self, preco_total:int, orcamento_cliente:int):
-        if preco_total<=orcamento_cliente:
-            return True
-        else:
-            return False
+    def ir_checkout(self, driver:webdriver.Chrome, cliente:Cliente):
+        try:
+            wait = WebDriverWait(driver, 15)
+            #self.verificar_produtos(driver, cliente)
+            button = wait.until(EC.presence_of_element_located((By.ID, "checkout")))
+            button.click()
+            self.messages.correct_message("ir para o checkout")
+            pass
+        except Exception as e:
+            self.messages.error_message("verificação dos produtos", e)
+
+
+    def verificar_produtos(self, driver:webdriver.Chrome, cliente:Cliente):
+        try:
+            produtos = self.listar_produtos(driver)
+            if not produtos:
+                return
+            preco_total = sum(p["preco"] for p in produtos)
+            while preco_total>cliente.orcamento and produtos>1:
+                produtos = self.remover_produto(driver, produtos)
+                if produtos:
+                    preco_total = sum(p["preco"] for p in produtos)
+                else:
+                    break
+            pass
+        except Exception as e:
+            self.messages.error_message("verificação dos produtos", e)
     pass
+
+    def listar_produtos(self, driver: webdriver.Chrome):
+        try:
+            wait = WebDriverWait(driver, 15)
+            itens = wait.until(
+                EC.presence_of_all_elements_located((By.CLASS_NAME, "inventory_item"))
+            )
+            produtos = []
+            for item in itens:
+                nome = item.find_element(By.CLASS_NAME, "inventory_item_name")
+                nome_text = nome.text
+                preco = float(item.find_element(By.CLASS_NAME, "inventory_item_price").text.replace("$", ""))
+                botao = item.find_element(By.TAG_NAME, "button")
+                produtos.append({
+                    "nome": nome_text,
+                    "preco": preco,
+                    "botao": botao
+                })
+            print(f"Produtos listados: {len(produtos)}")
+            self.messages.correct_message("listas os produtos")
+            return produtos
+        except Exception as e:
+            self.messages.error_message("listar os produtos", e)
+            return[]
+
+    def remover_produto(self, driver:webdriver.Chrome, lista_produtos:list[dict]):
+        try: 
+            item_mais_caro = max(lista_produtos, key=lambda x: x["preco"])
+            item_mais_caro["botao"].click()
+            lista_produtos.remove(item_mais_caro)
+            self.messages.correct_message(f"remover produto {item_mais_caro['nome']}")
+            return lista_produtos
+        except Exception as e:
+            self.messages.error_message(f"remover produto", e)
+        
+

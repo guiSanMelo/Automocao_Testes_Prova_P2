@@ -5,6 +5,7 @@ from models.cliente import Cliente
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from time import sleep
 class Tela_Login():
 
     def __init__(self):
@@ -16,7 +17,8 @@ class Tela_Login():
         try:
             driver.get("https://www.saucedemo.com/")
             self.messages.correct_message("Abrir o site")
-            driver.implicitly_wait(5)
+            #driver.implicitly_wait(5)
+           
             pass
         except Exception as e:
             self.messages.error_message("Abrir o site", e)
