@@ -14,19 +14,36 @@ class Selecao_Produtos:
         self.actions = Actions()
         pass
 
-    def selecionar_produtos(self):
+    def entrar_inventário(self, driver:webdriver.Chrome):
+        try:
+            driver.get("https://www.saucedemo.com/inventory.html")
+            self.messages.correct_message("Abrir inventário")
+        except Exception as e:
+            self.messages.error_message("Abrir inventário", e)
+        pass
+
+    def selecionar_produtos(self, driver:webdriver.Chrome, cliente:Cliente):
         #inventory_list -> Class
         #inventory_item -> Class
         #inventory_item_price -> Class
         #btn btn_primary btn_small btn_inventory -> Class
+        #https://www.saucedemo.com/inventory.html
         try:
+            wait = WebDriverWait(driver, 20)
+            button = wait.until(EC.presence_of_all_elements_located((By.CLASS_NAME, "btn_inventory")))
+            for button in button:
+                button.click()
+                produto = driver.find_element(By.CLASS_NAME, "inventory_item_name").text
+                print(F"--Poduto adicionado ao carrinho: ", produto)
             
+            self.messages.correct_message("Produtos selecionados")
+            driver.implicitly_wait(30)
             pass
         except Exception as e:
             self.messages.error_message("Seleção de Produtos", e)
         pass
 
-    def ir_carrinho(self, ):
+    def ir_carrinho(self):
         pass
 
     def posso_gastar(self, preco_total:int, orcamento_cliente:int):

@@ -2,6 +2,8 @@ from selenium import webdriver
 from .messages import *
 from selenium.webdriver.common.by import By
 from models.cliente import Cliente
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 class Actions:
@@ -9,6 +11,27 @@ class Actions:
     def __init__(self):
         self.messages = Messages()
         pass
+
+    def criar_driver(self):
+        try:
+            service=Service(ChromeDriverManager().install())
+            options = webdriver.ChromeOptions()
+            options.add_argument("--disable-notifications")
+            options.add_argument("--disable-infobars")
+            options.add_argument("--disable-save-password-bubble")
+            options.add_argument("--disable-features=PasswordLeakDetection")
+            options.add_argument("--incognito")
+            prefs = {
+                "credentials_enable_service": False,
+                "profile.password_manager_enabled": False
+            }
+            options.add_experimental_option("prefs", prefs)
+            
+            driver = webdriver.Chrome(options=options, service=service)
+            self.messages.correct_message("Configurar Chrome")
+            return driver
+        except Exception as e:
+            self.messages.error_message("Configurar chrome", e)
 
     def achar_elemento(self, driver:webdriver.Chrome, elemento_id:str|None = None, elemento_class:str|None=None):
         try:
