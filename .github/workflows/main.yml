@@ -21,4 +21,4 @@ jobs:
             pip install -r requeriments.txt
 
       - name: Teste
-        run: python main.py
+        run: python automacao_sauce\main.py
