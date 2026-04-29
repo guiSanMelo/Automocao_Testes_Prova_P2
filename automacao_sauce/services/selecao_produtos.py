@@ -118,7 +118,7 @@ class Selecao_Produtos:
             item_mais_caro = max(lista_produtos, key=lambda x: x["preco"])
             item_mais_caro["botao"].click()
             lista_produtos.remove(item_mais_caro)
-            self.messages.correct_message(f"remover produto {item_mais_caro['nome']}")
+            self.messages.correct_message(f"--remover produto {item_mais_caro['nome']}")
             return lista_produtos
         except Exception as e:
             self.messages.error_message(f"remover produto", e)
