@@ -12,7 +12,7 @@ class Actions:
         self.messages = Messages()
         pass
 
-    def criar_driver(self):
+    def setUp(self, interface_ligada:bool=False):
         try:
             service=Service(ChromeDriverManager().install())
             options = webdriver.ChromeOptions()
@@ -27,6 +27,9 @@ class Actions:
             }
             options.add_experimental_option("prefs", prefs)
             
+            if not interface_ligada:
+                options.add_argument("--headless=new") 
+
             driver = webdriver.Chrome(options=options, service=service)
             driver.maximize_window()
             self.messages.correct_message("Configurar Chrome")

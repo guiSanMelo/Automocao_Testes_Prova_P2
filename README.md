@@ -47,4 +47,3 @@ SAUCE_ORCAMENTO=
 ````
 
 ## Demonstração Atutomação Sauce:
-[![Demosntração navegador!](imgs\selenium-logo-png_seeklogo-394619.png)](videos\demonstração_chrome.mp4)   
