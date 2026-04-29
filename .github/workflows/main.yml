@@ -8,7 +8,7 @@ jobs:
 
     steps:
       - name: Baixando o Código
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Instalando o Python
         uses: actions/setup-python@v5   
@@ -20,5 +20,5 @@ jobs:
             python -m pip install --upgrade pip
             pip install -r requeriments.txt
 
-      - name: Rodando a Missão (Testes)
+      - name: Teste
         run: python automacao_sauce\main.py
