@@ -21,12 +21,12 @@ jobs:
           pip install -r requirements.txt
 
       - name: Teste - PetStore Swagger
-        run: python PetStore_Swager_Teste/main.py
+        run: python main.py
         working-directory: PetStore_Swager_Teste
 
       - name: Teste - Automação Sauce
         working-directory: automacao_sauce
-        run: python automacao_sauce/main.py
+        run: main.py
         env:
           SAUCE_USERNAME: ${{ secrets.SAUCE_USERNAME }}
           SAUCE_PASSWORD: ${{ secrets.SAUCE_PASSWORD }}
