@@ -11,20 +11,21 @@ def auth():
 def api():
     return BaseTest()
 
-@pytest.fixture(scope="session", autouse=False)
+@pytest.fixture(scope="session", autouse=True)
 def criar_pets_iniciais():
     api = BaseTest()
-
+    print("\n")
     for pet in PETS_PRE_DEFINIDOS:
         response = api.post("/pet", json=pet)
         assert response.status_code == 200, f"Falha ao criar pet {pet['name']}"
+        print(f"Pet criado: {pet['name']}")
         BaseTest.pets_ids.append(response.json()["id"]) 
     return BaseTest.pets_ids  
 
-@pytest.fixture(scope="session", autouse=False)
+@pytest.fixture(scope="session", autouse=True)
 def criar_orders_iniciais():
     api = BaseTest()
-
+    print("\n")
     for pedido in ORDER_PRE_DEFINIDAS:
         response = api.post("/store/order", json=pedido)
         assert response.status_code == 200, f"Falha ao criar pedido {pedido['id']}"
@@ -37,7 +38,7 @@ def criar_orders_iniciais():
 def criar_user_iniciais():
     api = BaseTest()
     usernames = []
-
+    print("\n")
     for users in USERS_PRE_DEFINIDOS:
         response = api.post("/user", json=users)
         assert response.status_code == 200, f"Falha ao criar o usuário: {users['username']}"

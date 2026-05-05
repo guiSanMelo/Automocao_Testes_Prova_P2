@@ -7,8 +7,6 @@ class TestPet(BaseTest):
     def test_get_pet_by_status_200(self, status):
         response = self.get("/pet/findByStatus", params={"status": status})
         print("Status: ", status)
-        #data = response.json()
-        #print(data)
         assert response.status_code==200   
         
     def test_get_pet_by_id_200(self):
@@ -58,10 +56,10 @@ class TestPet(BaseTest):
         
     def test_adicionar_foto_200(self):
         for petId in self.pets_ids:
-            with open(".media\\imgs\\pikachu.png", "rb") as pikachu:
+            with open("imgs/pikachu.png", "rb") as pikachu:
                 response = self.post(
                     f"/pet/{petId}/uploadImage",
-                    files={"files": pikachu},
+                    files={"file": pikachu},
                     data={"additionalMetadata": "foto do pikachu"}
                 )
                 assert response.status_code==200

@@ -6,7 +6,6 @@ from services.selecao_produtos import Selecao_Produtos
 from services.checkout import Checkout
 from models.cliente import Cliente
 from dotenv import load_dotenv
-from selenium import webdriver
 
 class Main:
 
@@ -29,7 +28,7 @@ class Main:
             orcamento=float(os.getenv("SAUCE_ORCAMENTO"))
         )
 
-        driver = self._actions.setUp()
+        driver = self._actions.setUp(interface_ligada=True)
         try:
             self._login.abrir_site(driver)
             self._login.credenciais_login(cliente, driver)
