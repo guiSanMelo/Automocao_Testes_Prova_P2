@@ -11,6 +11,7 @@ from selenium import webdriver
 class Main:
 
     def __init__(self):
+        load_dotenv()
         self._messages = Messages()
         self._actions = Actions()
         self._login = Tela_Login()
@@ -19,10 +20,7 @@ class Main:
         pass
 
     def programa(self):
-        load_dotenv()
-        
         cliente = Cliente(
-            username=os.getenv("SAUCE_USERNAME"),
             password=os.getenv("SAUCE_PASSWORD"),
             nome=os.getenv("SAUCE_NOME"),
             sobrenome=os.getenv("SAUCE_SOBRENOME"),
