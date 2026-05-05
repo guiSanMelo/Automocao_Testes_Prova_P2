@@ -22,7 +22,7 @@ jobs:
 
       - name: Teste - PetStore Swagger
         run: python PetStore_Swager_Teste/main.py
-        working-directory: PetStore_Swagger_Teste
+        working-directory: PetStore_Swager_Teste
 
       - name: Teste - Automação Sauce
         working-directory: automacao_sauce
