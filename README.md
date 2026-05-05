@@ -25,7 +25,9 @@ pip install -r requirements.txt
 ````
 Por fim, você precisa criar um arquivo ".env", colocando as variáveis como no arquivo ".env_exemple". Em seguida você deve preenchê-las com as informações necessárias.
 # Teste completo:
-![Fluxo completo](imgs\teste_completo.gif)
+
+<img width="1860" height="969" alt="teste_completo" src="https://github.com/user-attachments/assets/86ff3e33-ddc0-495e-95f9-5eaf0c6de15f" />
+
 # Automação de testes API PetStore
 O objetivo dessa sessão do trabalho é fazer um teste dos endpoint da api da [PetStore](https://petstore.swagger.io/#/).
 
@@ -45,7 +47,10 @@ Por fim, em atualizações futuras pretendo adicionar testes que forcem o erro, 
 
 
 ## Demonstração:
-![Fluxo Api PetStore](imgs\teste_api_pet_store.gif)
+
+<img width="1860" height="968" alt="teste_api_pet_store" src="https://github.com/user-attachments/assets/80cc2b5c-d8d5-48e6-bb49-6de855362331" />
+
+
 # Automação de testes Sauce
 O objetivo dessa sessão do trabalho é fazer um fluxo de um usuário hipotético, que decidiu comprar alguns items numa loja hipoetética, ultilizando a loja fictícia do [Sauce Labs](https://www.saucedemo.com/).
 
@@ -73,9 +78,11 @@ A conclusão que eu cheguei é que o selenium é ferramenta muito boa de usarm, 
 
 ## Demonstração:
 
-![Teste com interface](imgs\teste_sauce_inter.gif)
+<img width="1906" height="978" alt="teste_sauce_inter" src="https://github.com/user-attachments/assets/f040c209-54a2-4b7e-a67b-1166d1c7d991" />
 
-![Teste sem a interface](imgs\teste_sauce_no_int.gif)
+
+<img width="1860" height="968" alt="teste_sauce_no_int" src="https://github.com/user-attachments/assets/a330085f-9587-4bbe-9758-85d007860dcd" />
+
 
 # Rodando a aplicação:
 Para rodar ambas os testes ao mesmo tempo rode o comando abaixo, na raiz do projeto, no terminal:
