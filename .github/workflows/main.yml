@@ -26,7 +26,7 @@ jobs:
 
       - name: Teste - Automação Sauce
         working-directory: automacao_sauce
-        run: main.py
+        run: python main.py
         env:
           SAUCE_USERNAME: ${{ secrets.SAUCE_USERNAME }}
           SAUCE_PASSWORD: ${{ secrets.SAUCE_PASSWORD }}
