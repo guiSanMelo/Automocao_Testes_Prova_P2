@@ -2,7 +2,7 @@
 
 PETS_PRE_DEFINIDOS = [
     {
-        "id": 0,
+        "id": 1,
         "category": {"id": 1, "name": "cachorro"},
         "name": "Rex",
         "photoUrls": ["https://exemplo.com/rex.jpg"],
@@ -10,7 +10,7 @@ PETS_PRE_DEFINIDOS = [
         "status": "available"
     },
     {
-        "id": 0,
+        "id": 2,
         "category": {"id": 1, "name": "cachorro"},
         "name": "Bolt",
         "photoUrls": ["https://exemplo.com/bolt.jpg"],
@@ -18,7 +18,7 @@ PETS_PRE_DEFINIDOS = [
         "status": "pending"
     },
     {
-        "id": 0,
+        "id": 3,
         "category": {"id": 2, "name": "gato"},
         "name": "Lola",
         "photoUrls": ["https://exemplo.com/lola.jpg"],
@@ -26,7 +26,7 @@ PETS_PRE_DEFINIDOS = [
         "status": "available"
     },
     {
-        "id": 0,
+        "id": 4,
         "category": {"id": 2, "name": "gato"},
         "name": "Mimi",
         "photoUrls": ["https://exemplo.com/mimi.jpg"],
@@ -34,7 +34,7 @@ PETS_PRE_DEFINIDOS = [
         "status": "sold"
     },
     {
-        "id": 0,
+        "id": 5,
         "category": {"id": 3, "name": "passaro"},
         "name": "Tweety",
         "photoUrls": ["https://exemplo.com/tweety.jpg"],

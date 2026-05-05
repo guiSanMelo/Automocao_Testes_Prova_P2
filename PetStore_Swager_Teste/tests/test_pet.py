@@ -1,10 +1,14 @@
 from PetStore_Swager_Teste.base_test import BaseTest
 from utils.pet_factory import criar_pet
-
+import pytest
 class TestPet(BaseTest):
 
-    def test_get_pet_by_status_200(self):
-        response = self.get("/pet/findByStatus")
+    @pytest.mark.parametrize("status", ["available", "pending", "sold"])
+    def test_get_pet_by_status_200(self, status):
+        response = self.get("/pet/findByStatus", params={"status": status})
+        print("Status: ", status)
+        #data = response.json()
+        #print(data)
         assert response.status_code==200   
         
     def test_get_pet_by_id_200(self):
