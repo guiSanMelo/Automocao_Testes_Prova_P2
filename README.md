@@ -94,3 +94,14 @@ Para rodar apenas o teste da API, dentro da raiz do projeot, rode em seu termina
 
 Para rodar apaenas o teste do Sauce, dentro da raiz do projeto, rode o comando:
 > python automacao_sauce\main.py
+
+# Considerações do Actions:
+
+Essa foi uma parte que eu tava muito sem sabe o que fazer porque isso eu realmente nunca tinha nem mechido para fazer algo. 
+
+No final, não foi tão complicado o código em si, o que mais deu problema foi porque eu não sabia que tinha que botar no secrets do github as váriáveis que eu usei no teste da Sauce. 
+
+Depois disso, o outro problema foi que eu tava fazendo um loop nas importações dos diretórios no actions porque eu repetia a pasta que era pra rodar no "run" e no "working-repository". O último erro foi que eu esqueci de botar "python" no run da automação.
+
+Por fim, eu acredito que dedicar as últimas horas do meu dia para fazer isso funcionar deu um ponto de partida para eu me inteirar mais nos meus conhecimentos de GitHub.
+
