@@ -22,6 +22,15 @@ jobs:
 
       - name: Teste - PetStore Swagger
         run: python PetStore_Swager_Teste/main.py
+        working-directory: PetStore_Swagger_Teste
 
       - name: Teste - Automação Sauce
+        working-directory: automacao_sauce
         run: python automacao_sauce/main.py
+        env:
+          SAUCE_USERNAME: ${{ secrets.SAUCE_USERNAME }}
+          SAUCE_PASSWORD: ${{ secrets.SAUCE_PASSWORD }}
+          SAUCE_NOME: ${{ secrets.SAUCE_NOME }}
+          SAUCE_SOBRENOME: ${{ secrets.SAUCE_SOBRENOME }}
+          SAUCE_CEP: ${{ secrets.SAUCE_CEP }}
+          SAUCE_ORCAMENTO: ${{ secrets.SAUCE_ORCAMENTO }}
