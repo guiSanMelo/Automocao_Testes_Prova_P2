@@ -28,7 +28,7 @@ class Main:
             orcamento=float(os.getenv("SAUCE_ORCAMENTO"))
         )
 
-        driver = self._actions.setUp(interface_ligada=True)
+        driver = self._actions.setUp()
         try:
             self._login.abrir_site(driver)
             self._login.credenciais_login(cliente, driver)
