@@ -21,6 +21,7 @@ class Main:
 
     def programa(self):
         cliente = Cliente(
+            username=os.getenv("SAUCE_USERNAME"),
             password=os.getenv("SAUCE_PASSWORD"),
             nome=os.getenv("SAUCE_NOME"),
             sobrenome=os.getenv("SAUCE_SOBRENOME"),

@@ -24,10 +24,11 @@ Após isso, você precisará baixar em seu projeto as dependências usadas e nas
 pip install -r requirements.txt   
 ````
 Por fim, você precisa criar um arquivo ".env", colocando as variáveis como no arquivo ".env_exemple". Em seguida você deve preenchê-las com as informações necessárias.
->  Os valores em "SAUCE_USERNAME" e "SAUCE_PASSWORD" são valores padrões para acessar o site do experimento, portanto não devem ser alterados.
+# Automação de testes API PetStore
 
-# Automação de testes API
+## Considerações:
 
+## Demonstração:
 
 # Automação de testes Sauce
 O objetivo dessa sessão do trabalho é fazer um fluxo de um usuário hipotético, que decidiu comprar alguns items numa loja hipoetética, ultilizando a loja fictícia do [Sauce Labs](https://www.saucedemo.com/).
@@ -45,5 +46,20 @@ SAUCE_SOBRENOME=
 SAUCE_CEP=
 SAUCE_ORCAMENTO=
 ````
+>obs: No env_exemple o "SAUCE_NOME" e o "SAUCE_PASSWORD" já estão com valores padrões indicados pelo pro Sauce, de uma lista pronta. Caso deseje mudar esses valores acesse o site do [Sauce Store](https://www.saucedemo.com/) 
 
-## Demonstração Atutomação Sauce:
+## Considerações
+
+## Demonstração:
+
+
+# Rodando a aplicação:
+Para rodar ambas os testes ao mesmo tempo rode o comando abaixo, na raiz do projeto, no terminal:
+
+> python main.py
+
+Para rodar apenas o teste da API, dentro da raiz do projeot, rode em seu terminal:
+>python PetStore_Swager_Teste\main.py
+
+Para rodar apaenas o teste do Sauce, dentro da raiz do projeto, rode o comando:
+> python automacao_sauce\main.py

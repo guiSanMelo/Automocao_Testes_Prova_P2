@@ -61,7 +61,7 @@ class Selecao_Produtos:
             wait = WebDriverWait(driver, 15)
             button = wait.until(EC.presence_of_element_located((By.ID, "checkout")))
             button.click()
-            sleep(10)
+            sleep(5)
             self.messages.correct_message("ir para o checkout")
             pass
         except Exception as e:
@@ -82,7 +82,7 @@ class Selecao_Produtos:
                 else:
                     break
             pass
-            sleep(10)
+            sleep(5)
         except Exception as e:
             self.messages.error_message("verificação dos produtos", e)
     pass

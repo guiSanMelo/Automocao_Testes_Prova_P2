@@ -34,7 +34,7 @@ class Checkout:
 
     def finalizar_compra(self, driver:webdriver.Chrome):
         try:
-            sleep(10)
+            sleep(5)
             self.actions.apertar_botao(driver, "finish")
             sleep(30)
         except Exception as e:
