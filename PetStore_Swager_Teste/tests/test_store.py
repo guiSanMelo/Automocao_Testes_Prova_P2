@@ -14,12 +14,12 @@ class TestStore(BaseTest):
         
       
     def test_get_store_order_by_id_200(self):
-        for orderId in self.pedidos_criados_ids:
+        for orderId in self.pedidos_id:
             response = self.get(f"/store/order/{orderId}")
             assert response.status_code==200
             
     def test_delete_order_by_id(self):
-        for orderId in self.pedidos_criados_ids:
+        for orderId in self.pedidos_id:
             response = self.delete(f"/store/order/{orderId}")
             assert response.status_code==200
 

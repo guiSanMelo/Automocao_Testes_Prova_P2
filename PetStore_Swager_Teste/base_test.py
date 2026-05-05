@@ -6,7 +6,7 @@ class BaseTest:
     token = None
     pets_ids=[]
     pedidos_id=[]
-    usuarios_id=[]
+    usernames=[]
    
     @classmethod
     def login(cls, username="test", password="abc123"):
