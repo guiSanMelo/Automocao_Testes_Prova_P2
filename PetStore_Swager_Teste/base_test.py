@@ -5,7 +5,8 @@ class BaseTest:
     BASE_URL="https://petstore.swagger.io/v2"
     token = None
     pets_ids=[]
-    pedidos_criados_ids=[]
+    pedidos_id=[]
+    usuarios_id=[]
    
     @classmethod
     def login(cls, username="test", password="abc123"):

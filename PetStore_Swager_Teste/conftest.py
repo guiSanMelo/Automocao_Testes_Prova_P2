@@ -29,10 +29,10 @@ def criar_orders_iniciais():
     """Cria os 5 pedidos pré-definidos uma vez antes de todos os testes."""
     
     api = BaseTest()
-    pedidos_criados_ids= []
+    pedidos_ids= []
     
     for pedido in ORDER_PRE_DEFINIDAS:
         response = api.post("/store/order", json=pedido)
         assert response.status_code==200, f"Falha ao criar pedido{pedido['id']}"
-        pedidos_criados_ids.append(response.json()["id"])
-    return pedidos_criados_ids
+        pedidos_ids.append(response.json()["id"])
+    return pedidos_ids

@@ -1,6 +1,6 @@
 import requests
 from base_test import BaseTest
-import datetime
+from utils.order_factory import create_order
 class TestStore(BaseTest):
 
     def test_get_store_inventory_200(self):
@@ -8,14 +8,7 @@ class TestStore(BaseTest):
         assert response.status_code==200
         
     def test_post_store_order_200(self):
-        order = {
-            "id": 0,
-            "petId": 0,
-            "quantity": 0,
-            "shipDate": "2026-05-05T01:47:04.087Z",
-            "status": "placed",
-            "complete": True
-        }
+        order = create_order()
         response = self.post("/store/order", json=order)
         assert response.status_code==200
         
